@@ -1,4 +1,4 @@
-async function searchUrbanDictionary2({ input }, userSettings) {
+async function searchUD({ input }, userSettings) {
   const apiUrl = `https://api.urbandictionary.com/v0/define?term=${encodeURIComponent(input)}`;
 
   try {

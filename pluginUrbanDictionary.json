@@ -1,0 +1,30 @@
+{
+    "id": "searchUrbanDictionary2",
+    "code": "async function searchUrbanDictionary2({ input }, userSettings) {\n  const apiUrl = `https://api.urbandictionary.com/v0/define?term=${encodeURIComponent(input)}`;\n\n  try {\n    const response = await fetch(apiUrl);\n    if (!response.ok) {\n      throw new Error(`HTTP error! status: ${response.status}`);\n    }\n    const data = await response.json();\n\n    if (data.list && data.list.length > 0) {\n      const definitions = data.list.map(item => {\n        return `Word: ${item.word}\\nDefinition: ${item.definition}\\nExample: ${item.example}\\nAuthor: ${item.author}\\nWritten On: ${item.written_on}\\nThumbs Up: ${item.thumbs_up}\\nThumbs Down: ${item.thumbs_down}\\n`;\n      }).join(\"\\n\\n\");\n      return definitions;\n    } else {\n      return \"No definitions found for this word.\";\n    }\n  } catch (error) {\n    return `Error fetching definition: ${error.message}`;\n  }\n}",
+    "uuid": "1c879559-3980-4474-b863-f491fb134be5",
+    "emoji": "🧩",
+    "title": "Urban Dictionary",
+    "iconURL": "https://avatars.githubusercontent.com/u/80348?s=200&v=4",
+    "syncedAt": "2025-01-24T00:35:49.982Z",
+    "deletedAt": null,
+    "openaiSpec": {
+        "name": "searchUrbanDictionary2",
+        "parameters": {
+            "type": "object",
+            "required": [],
+            "properties": {
+                "input": {
+                    "type": "string",
+                    "description": "The word or phrase to search for"
+                }
+            }
+        },
+        "description": "Searches Urban Dictionary"
+    },
+    "outputType": "respond_to_ai",
+    "oauthConfig": null,
+    "userSettings": null,
+    "overviewMarkdown": "Look up the meaning of slang, phrases, and internet lingo using Urban Dictionary. Get definitions, examples, and more.\n\nBest used in conjunction with the Urban Dictionary Agent.",
+    "authenticationType": "AUTH_TYPE_NONE",
+    "implementationType": "javascript"
+}
